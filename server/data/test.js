@@ -1,9 +1,9 @@
 var Test = require('mongoose').model('Test');
 
 module.exports = {
-    getTest: function(testName, callback) {
+    getByName: function(name, callback) {
         Test.findOne({
-            name: testName
+            name: name
         }, callback);
     }
 };

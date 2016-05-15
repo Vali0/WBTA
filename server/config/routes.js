@@ -15,6 +15,8 @@ module.exports = function(app) {
     app.get('/courses', controllers.courses.getCourses);
     app.get('/course/:id', controllers.courses.getCourseById);
 
+    app.get('/course/:courseId/test/:testId', controllers.tests.getTestById);
+
     // app.get('/page-speed', controllers.pageSpeed.getPageSpeedForm);
     // app.post('/page-speed', controllers.pageSpeed.runPageSpeed);
 

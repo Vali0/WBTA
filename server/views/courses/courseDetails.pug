@@ -3,7 +3,9 @@ extends ../shared/layout
 block main-content
     div.panel.panel-default
         div.panel-heading
-            h1 #{course.name}
+            h1
+                span #{course.name}
+                span.pull-right.badge #{course.students.length} students
         div.panel-body
             p #{course.lecture}
         div.panel-footer
@@ -22,4 +24,4 @@ block main-content
                     td
                         h4 #{test}
                     td
-                        a(href="test/" + test.replace(/\s/g, '-') class="btn btn-success") Participate
+                        a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') class="btn btn-success") Participate
