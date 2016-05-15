@@ -1,7 +1,7 @@
 var UsersController = require('./UsersController'),
-    PageSpeedController = require('./PageSpeedController');
+    CoursesController = require('./CoursesController');
 
 module.exports = {
     users: UsersController,
-    pageSpeed: PageSpeedController
+    courses: CoursesController
 };

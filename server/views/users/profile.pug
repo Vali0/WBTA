@@ -1,8 +1,6 @@
 extends ../shared/layout
 block main-content
     .container
-        div(id="error-div" class="alert alert-danger")
-                span Wrong URLs
         form(id='profile-form')
             label Username:
             label(id="username") #{currentUser.username}

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     UserModel = require('../data/models/User'),
-    PagespeedModel = require('../data/models/Pagespeed');
+    CourseModel = require('../data/models/Course'),
+    TestModel = require('../data/models/Test');
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -15,10 +16,11 @@ module.exports = function(config) {
         console.log('Database up and running...');
     });
 
-    db.on('error', function(err){
+    db.on('error', function(err) {
         console.log('Database error: ' + err);
     });
 
     UserModel.init();
-    PagespeedModel.init();
+    CourseModel.init();
+    TestModel.init();
 };

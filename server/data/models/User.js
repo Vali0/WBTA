@@ -10,9 +10,12 @@ module.exports.init = function() {
         },
         salt: String,
         hashPass: String,
-        sites: [{
-            type: String,
-            unique: true
+        courses: [{
+            type: String
+        }],
+        grades: [{
+            type: Object, // {courseName: ..., grade: ...}
+            required: true
         }]
     });
 

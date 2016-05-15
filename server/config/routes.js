@@ -12,13 +12,15 @@ module.exports = function(app) {
     app.get('/profile', auth.isAuthenticated, controllers.users.getProfile);
     app.put('/profile', auth.isAuthenticated, controllers.users.updateProfile);
 
-    app.get('/page-speed', controllers.pageSpeed.getPageSpeedForm);
-    app.post('/page-speed', controllers.pageSpeed.runPageSpeed);
+    app.get('/courses', controllers.courses.getCourses);
 
-    app.get('/page-speed/my-sites', controllers.users.getMySites);
-    app.post('/page-speed/my-sites', controllers.pageSpeed.runPageSpeed);
+    // app.get('/page-speed', controllers.pageSpeed.getPageSpeedForm);
+    // app.post('/page-speed', controllers.pageSpeed.runPageSpeed);
 
-    app.get('/benchmark-results', controllers.pageSpeed.getBenchmarkResults);
+    // app.get('/page-speed/my-sites', controllers.users.getMySites);
+    // app.post('/page-speed/my-sites', controllers.pageSpeed.runPageSpeed);
+
+    // app.get('/benchmark-results', controllers.pageSpeed.getBenchmarkResults);
 
     app.get('/', function(req, res) {
         res.render('index', {
