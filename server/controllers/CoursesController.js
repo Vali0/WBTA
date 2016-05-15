@@ -16,10 +16,10 @@ module.exports = {
         });
     },
     getCourseById: function(req, res, next) {
-        console.log(req.params);
-        var courseId = req.params.id;
+        var courseName = req.params.id;
+        courseName = courseName.replace('-', ' ');
 
-        courseModel.getById(courseId, function(err, data) {
+        courseModel.getById(courseName, function(err, data) {
             if(err) {
                 return next(err);
             }

@@ -5,7 +5,21 @@ block main-content
         div.panel-heading
             h1 #{course.name}
         div.panel-body
-            p !{course.lecture}
+            p #{course.lecture}
         div.panel-footer
             span Created By: Pesho
-            span.pull-right Date: Today!
+            span.pull-right Today!
+
+    h1 Available Tests
+    table.table.table-bordered.table-striped.table-hover#results-table
+        thead
+            tr
+                th Test Name
+                th
+        tbody
+            each test in course.assignedTests
+                tr
+                    td
+                        h4 #{test}
+                    td
+                        a(href="test/" + test.replace(/\s/g, '-') class="btn btn-success") Participate

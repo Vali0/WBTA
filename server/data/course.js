@@ -4,7 +4,7 @@ module.exports = {
     getAll: function(callback) {
         Course.find({}, callback);
     },
-    getById: function(id, callback) {
-        Course.findOne({_id: id}, callback);
+    getById: function(name, callback) {
+        Course.findOne({name: name}, callback);
     }
 };

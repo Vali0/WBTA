@@ -13,7 +13,7 @@ block main-content
                     each course in courses
                         tr
                             td
-                                a(href="course/" + course._id) #{course.name}
+                                a(href="course/" + course.name.replace(/\s/g, '-')) #{course.name}
                             td #{course.lecture.substr(0, 100)}
                             td #{course.assignedTests.length}
                             td #{course.students.length}
