@@ -4,8 +4,8 @@ module.exports = {
     create: function(user, callback) {
         User.create(user, callback);
     },
-    update: function(id, sites, callback) {
-        User.update(id, {sites: sites}, callback);
+    update: function(id, data, callback) {
+        User.update(id, data, callback);
     },
     findOne: function(username, callback) {
         User.findOne({

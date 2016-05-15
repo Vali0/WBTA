@@ -16,16 +16,24 @@ module.exports = {
         });
     },
     getCourseById: function(req, res, next) {
-        var courseName = req.params.id;
+        var courseName = req.params.id,
+            currentUser = req.user,
+            isCourseAssigned = false;
+
         courseName = courseName.replace('-', ' ');
 
         courseModel.getById(courseName, function(err, data) {
-            if(err) {
+            if (err) {
                 return next(err);
             }
 
+            if (currentUser.courses.indexOf(courseName) >= 0) {
+                isCourseAssigned = true;
+            }
+
             res.render(CONTROLLER_NAME + '/courseDetails', {
-                course: data
+                course: data,
+                isCourseAssigned: isCourseAssigned
             });
         });
     }

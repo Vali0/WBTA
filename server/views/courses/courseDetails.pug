@@ -5,23 +5,39 @@ block main-content
         div.panel-heading
             h1
                 span #{course.name}
-                span.pull-right.badge #{course.students.length} students
+                span.pull-right.badge #{course.assignedTests.length} available tests
         div.panel-body
             p #{course.lecture}
         div.panel-footer
             span Created By: Pesho
             span.pull-right Today!
 
-    h1 Available Tests
-    table.table.table-bordered.table-striped.table-hover#results-table
-        thead
-            tr
-                th Test Name
-                th
-        tbody
-            each test in course.assignedTests
+    if isCourseAssigned
+        h1 Available Tests
+        table.table.table-bordered.table-striped.table-hover#results-table
+            thead
                 tr
-                    td
-                        h4 #{test}
-                    td
-                        a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') class="btn btn-success") Participate
+                    th Test Name
+                    th
+            tbody
+                each test in course.assignedTests
+                    tr
+                        td
+                            h4 #{test}
+                        td
+                            a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') class="btn btn-success") Participate
+    else
+        h3 If you want to participate following tests please assign to this course
+        table.table.table-bordered.table-striped.table-hover#results-table
+            thead
+                tr
+                    th Test Name
+            tbody
+                each test in course.assignedTests
+                    tr
+                        td
+                            h4 #{test}
+        a(href=course.name.replace(/\s/g, '-') id='assign-course' class="btn btn-primary btn-lg" data-course-name=course.name) Assign Course
+block page-scripts
+    script(src="/js/httpRequester.js")
+    script(src="/js/assignCourse.js")

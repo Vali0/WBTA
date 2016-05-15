@@ -14,18 +14,18 @@ html
                 ul.nav.navbar-nav
                     li
                         a(href="/") Home
-                    //- if (currentUser)
-                    li
-                        a(href="/courses") courses
-                    //- li
-                    //-     a(href="/profile") #{currentUser.username}
-                    li
-                        a(href="/logout") Logout
-                    //- else
-                    li
-                        a(href="/register") Register
-                    li
-                        a(href="/login") Login
+                    if currentUser
+                        li
+                            a(href="/courses") courses
+                        li
+                            a(href="/profile") #{currentUser.username}
+                        li
+                            a(href="/logout") Logout
+                    else
+                        li
+                            a(href="/register") Register
+                        li
+                            a(href="/login") Login
 
         .container
             if (errorMessage)
@@ -34,7 +34,6 @@ html
             block main-content
 
         footer
-            p.text-center
-                | &copy; Vali0
+            p.text-center &copy; Vali0
 
         include scripts

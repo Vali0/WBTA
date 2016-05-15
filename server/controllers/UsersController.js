@@ -53,6 +53,7 @@ module.exports = {
             currentUser: req.user
         });
     },
+    // FIX THIS! user model is in req.user
     updateProfile: function(req, res, next) {
         users.findOne(req.body.username, function(err, user) {
             var sites = distinctSiteNames(user.sites.concat(req.body.sites));
@@ -68,11 +69,21 @@ module.exports = {
             });
         });
     },
-    getMySites: function(req, res, next) {
-        var mySites = req.user.sites;
+    assignCourse: function(req, res, next) {
+        var user = req.user,
+            courseName = req.body.courseName;
 
-        res.render(CONTROLLER_NAME + '/mySitesForm', {
-            sites: mySites
+        user.courses.push(courseName);
+
+        users.update({
+            _id: user._id
+        }, user, function(err, data) {
+            if (err) {
+                // mongoose blow silently
+                return next(err);
+            }
+
+            res.render('course/' + courseName);
         });
     }
 };

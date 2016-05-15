@@ -14,6 +14,7 @@ module.exports = function(app) {
 
     app.get('/courses', controllers.courses.getCourses);
     app.get('/course/:id', controllers.courses.getCourseById);
+    app.put('/course/:id', controllers.users.assignCourse);
 
     app.get('/course/:courseId/test/:testId', controllers.tests.getTestById);
 

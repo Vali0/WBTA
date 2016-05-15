@@ -13,8 +13,8 @@ module.exports.init = function() {
         courses: [{
             type: String
         }],
-        grades: [{
-            type: Object, // {courseName: ..., grade: ...}
+        tests: [{
+            type: Object,
             required: true
         }]
     });
