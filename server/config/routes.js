@@ -13,6 +13,7 @@ module.exports = function(app) {
     app.put('/profile', auth.isAuthenticated, controllers.users.updateProfile);
 
     app.get('/courses', controllers.courses.getCourses);
+    app.get('/course/:id', controllers.courses.getCourseById);
 
     // app.get('/page-speed', controllers.pageSpeed.getPageSpeedForm);
     // app.post('/page-speed', controllers.pageSpeed.runPageSpeed);

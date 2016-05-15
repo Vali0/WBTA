@@ -1,0 +1,11 @@
+extends ../shared/layout
+
+block main-content
+    div.panel.panel-default
+        div.panel-heading
+            h1 #{course.name}
+        div.panel-body
+            p !{course.lecture}
+        div.panel-footer
+            span Created By: Pesho
+            span.pull-right Date: Today!
