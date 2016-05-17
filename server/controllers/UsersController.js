@@ -1,5 +1,6 @@
 var encryption = require('../utilities/encryption');
 var users = require('../data/users');
+var courseModel = require('../data/course');
 
 var CONTROLLER_NAME = 'users';
 
@@ -73,17 +74,19 @@ module.exports = {
         var user = req.user,
             courseName = req.body.courseName;
 
-        user.courses.push(courseName);
-
-        users.update({
-            _id: user._id
-        }, user, function(err, data) {
+        users.assignCourse(user._id, courseName, function(err, data) {
             if (err) {
                 // mongoose blow silently
                 return next(err);
             }
 
-            res.render('course/' + courseName);
+            courseModel.assignStudent(courseName, user.username, function(err, data) {
+                if (err) {
+                    return next(err);
+                }
+
+                res.render('course/' + courseName);
+            });
         });
     }
 };

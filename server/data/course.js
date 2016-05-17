@@ -5,6 +5,18 @@ module.exports = {
         Course.find({}, callback);
     },
     getById: function(name, callback) {
-        Course.findOne({name: name}, callback);
+        Course.findOne({
+            name: name
+        }, callback);
+    },
+    assignStudent: function(courseName, username, callback) {
+        Course.findOneAndUpdate({
+                name: courseName
+            }, {
+                $push: {
+                    students: username
+                }
+            },
+            callback);
     }
 };

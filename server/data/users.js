@@ -11,5 +11,15 @@ module.exports = {
         User.findOne({
             username: username
         }, callback);
+    },
+    assignCourse: function(userId, courseName, callback) {
+        User.findOneAndUpdate({
+                _id: userId
+            }, {
+                $push: {
+                    courses: courseName
+                }
+            },
+            callback);
     }
 };
