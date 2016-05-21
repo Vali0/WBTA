@@ -21,5 +21,19 @@ module.exports = {
                 }
             },
             callback);
+    },
+    assignTest: function(userId, testName, callback) {
+        User.findOneAndUpdate({
+                _id: userId
+            }, {
+                $push: {
+                    tests: {
+                        testName: testName,
+                        grade: 2,
+                        date: new Date().toString()
+                    }
+                }
+            },
+            callback);
     }
 };

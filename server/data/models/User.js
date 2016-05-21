@@ -11,11 +11,13 @@ module.exports.init = function() {
         salt: String,
         hashPass: String,
         courses: [{
-            type: String
+            type: String,
+            unique: true
         }],
         tests: [{
-            type: Object,
-            required: true
+            testName: String,
+            grade: Number,
+            date: Date
         }]
     });
 

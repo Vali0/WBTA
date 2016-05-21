@@ -4,21 +4,18 @@ module.exports.init = function() {
     var testSchema = mongoose.Schema({
         name: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
-        content: {
-            type: String,
-            required: true
-        },
+        questions: [{
+            question: String,
+            answers: [String],
+            correctAnswer: Number
+        }],
         course: {
             type: String,
-            unique:true,
             required: true
-        },
-        students: [{
-            type: String,
-            unique: true
-        }]
+        }
     });
 
     var Test = mongoose.model('Test', testSchema);

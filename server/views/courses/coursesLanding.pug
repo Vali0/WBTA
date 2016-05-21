@@ -2,19 +2,22 @@ extends ../shared/layout
 block main-content
     .panel.panel-default
         .panel-body
-            table.table.table-bordered.table-striped.table-hover#results-table
-                thead
-                    tr
-                        th Name
-                        th Lecture Summary
-                        th Tests Count
-                        th Students Count
-                tbody
-                    each course in courses
+            if(courses.length)
+                table.table.table-bordered.table-striped.table-hover#results-table
+                    thead
                         tr
-                            td
-                                a(href="course/" + course.name.replace(/\s/g, '-')) #{course.name}
-                            td #{course.lecture.substr(0, 100)}
-                            td #{course.assignedTests.length}
-                            td #{course.students.length}
+                            th Name
+                            th Lecture Summary
+                            th Tests Count
+                            th Students Count
+                    tbody
+                        each course in courses
+                            tr
+                                td
+                                    a(href="course/" + course.name.replace(/\s/g, '-')) #{course.name}
+                                td #{course.lecture.substr(0, 100)}
+                                td #{course.assignedTests.length}
+                                td #{course.students.length}
+            else
+                h1 There are not available courses.
 block page-scripts

@@ -13,10 +13,12 @@ module.exports = function(app) {
     app.put('/profile', auth.isAuthenticated, controllers.users.updateProfile);
 
     app.get('/courses', controllers.courses.getCourses);
-    app.get('/course/:id', controllers.courses.getCourseById);
-    app.put('/course/:id', controllers.users.assignCourse);
+    app.get('/course/:id', auth.isAuthenticated, controllers.courses.getCourseById);
+    app.put('/course/:id', auth.isAuthenticated, controllers.users.assignCourse);
 
-    app.get('/course/:courseId/test/:testId', controllers.tests.getTestById);
+    app.get('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.tests.getTestById);
+    app.put('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.users.assignTest);
+    app.post('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.users.evaluateTest);
 
     // app.get('/page-speed', controllers.pageSpeed.getPageSpeedForm);
     // app.post('/page-speed', controllers.pageSpeed.runPageSpeed);

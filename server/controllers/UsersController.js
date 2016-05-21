@@ -1,8 +1,9 @@
-var encryption = require('../utilities/encryption');
-var users = require('../data/users');
-var courseModel = require('../data/course');
-
 var CONTROLLER_NAME = 'users';
+
+var encryption = require('../utilities/encryption');
+
+var users = require('../data/users'),
+    courseModel = require('../data/course');
 
 function distinctSiteNames(array) {
     var a = array.concat();
@@ -88,5 +89,25 @@ module.exports = {
                 res.render('course/' + courseName);
             });
         });
+    },
+    assignTest: function(req, res, next) {
+        var user = req.user,
+            testName = req.body.testName;
+
+        users.assignTest(user._id, testName, function(err, data) {
+            if (err) {
+                return next(err);
+            }
+
+            res.end();
+        });
+    },
+    evaluateTest: function(req, res, next) {
+        var user = req.user,
+            userAnswers = req.body;
+
+        console.log(userAnswers);
+
+        res.end();
     }
 };

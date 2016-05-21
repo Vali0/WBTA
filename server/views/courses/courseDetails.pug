@@ -25,7 +25,7 @@ block main-content
                         td
                             h4 #{test}
                         td
-                            a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') class="btn btn-success") Participate
+                            a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') id="participate-test" class="btn btn-success" data-test-name=test) Participate
     else
         h3 If you want to participate following tests please assign to this course
         table.table.table-bordered.table-striped.table-hover#results-table
@@ -37,7 +37,9 @@ block main-content
                     tr
                         td
                             h4 #{test}
-        a(href=course.name.replace(/\s/g, '-') id='assign-course' class="btn btn-primary btn-lg" data-course-name=course.name) Assign Course
+        a(href=course.name.replace(/\s/g, '-') id="assign-course" class="btn btn-primary btn-lg" data-course-name=course.name) Assign Course
+
 block page-scripts
     script(src="/js/httpRequester.js")
     script(src="/js/assignCourse.js")
+    script(src="/js/participateTest.js")

@@ -1,4 +1,18 @@
 extends ../shared/layout
 
 block main-content
-    #{test}
+    form(method="post" class="form-horizontal")
+        fieldset
+            legend #{test.name}
+            input(type="hidden" name="testName" value=test.name)
+            each questionData in test.questions
+                - var questionName = questionData.question.replace(/\s/g, '-')
+                div.form-group
+                    label.control-label #{questionData.question}
+                    each answer, index in questionData.answers
+                        div.radio
+                            label
+                                input(type="radio" name=questionName value=index)
+                                | #{answer}
+            div.form-group
+                button(type="submit" class="btn btn-primary") Submit

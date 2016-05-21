@@ -4,15 +4,16 @@ module.exports.init = function() {
     var courseSchema = mongoose.Schema({
         name: {
             type: String,
+            required: true,
             unique: true,
-            required: true
         },
         lecture: {
             type: String,
             required: true
         },
         assignedTests: [{
-            type: String
+            type: String,
+            unique: true
         }],
         students: [{
             type: String,
