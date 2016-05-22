@@ -102,38 +102,5 @@ module.exports = {
 
             res.end();
         });
-    },
-
-    // TODO: Validate if answer is missing. User skip question.
-    evaluateTest: function(req, res, next) {
-        var user = req.user,
-            userAnswers = req.body;
-
-        testModel.getByName(userAnswers.testName, function(err, data) {
-            if (err) {
-                console.log(err);
-                return next(err);
-            }
-
-            console.log(data);
-            var testQuestions = data.questions;
-            var userScore = {};
-            for (var item in testQuestions) {
-                if (testQuestions.hasOwnProperty(item)) {
-                    var userAnswer = userAnswers[testQuestions[item].question];
-                    var correctAnswer = testQuestions[item].correctAnswer;
-
-                    if (userAnswer === correctAnswer) {
-                        userScore[userAnswers.testName] = true;
-                    } else {
-                        userScore[userAnswers.testName] = correctAnswer;
-                    }
-                }
-            }
-
-            // TODO: Calculate student grade and write it in database. Probably one answer should be 10%
-
-            res.end();
-        });
     }
 };

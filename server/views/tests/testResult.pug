@@ -1,0 +1,19 @@
+extends ../shared/layout
+
+block main-content
+    h4.alert.alert-success Your grade is:&nbsp;
+        span.badge #{userGrade}
+    ul.list-group
+        each answer, question in userScore
+            li.list-group-item
+                | #{question} -&nbsp;
+                if answer.isCorrect
+                    | Your answer&nbsp;
+                    span.label.label-success #{answer.userAnswer}
+                    | &nbsp;is correct
+                else
+                    | Your answer&nbsp;
+                    span.label.label-warning #{answer.userAnswer}
+                    | &nbsp;is not correct. The correct answer is&nbsp;
+                    span.span.label.label-success #{answer.correctAnswer}
+    h4.alert.alert-info Correct Answers: #{correctAnswersCount}

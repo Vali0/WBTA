@@ -18,7 +18,7 @@ module.exports = function(app) {
 
     app.get('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.tests.getTestById);
     app.put('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.users.assignTest);
-    app.post('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.users.evaluateTest);
+    app.post('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.tests.submitTest);
 
     // app.get('/page-speed', controllers.pageSpeed.getPageSpeedForm);
     // app.post('/page-speed', controllers.pageSpeed.runPageSpeed);
