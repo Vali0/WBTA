@@ -5,27 +5,33 @@ html
         link(rel="stylesheet" type="text/css" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css")
         link(rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")
         link(rel="stylesheet" type="text/css" href="/css/site.css")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
     body
-        header.nav
-        .container
-            .navbar-header
-                a.navbar-brand(href="/") WBTA
-            .navbar-collapse.collapse
-                ul.nav.navbar-nav
-                    li
-                        a(href="/") Home
-                    if currentUser
+        nav.navbar.navbar-default
+            div.container-fluid
+                div.navbar-header
+                    a.navbar-brand(href="/") WBTA
+                    button(aria-expanded="false" type="button" data-toggle="collapse" data-target="#navbar-collapse").navbar-toggle.collapsed
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                div(aria-expanded="false").navbar-collapse.collapse#navbar-collapse
+                    ul.nav.navbar-nav
                         li
-                            a(href="/courses") Courses
-                        li
-                            a(href="/profile") #{currentUser.username}
-                        li
-                            a(href="/logout") Logout
-                    else
-                        li
-                            a(href="/register") Register
-                        li
-                            a(href="/login") Login
+                            a(href="/") Home
+                        if currentUser
+                            li
+                                a(href="/courses") Courses
+                            li
+                                a(href="/profile") #{currentUser.username}
+                            li
+                                a(href="/logout") Logout
+                        else
+                            li
+                                a(href="/register") Register
+                            li
+                                a(href="/login") Login
 
         .container
             if (errorMessage)

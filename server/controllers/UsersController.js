@@ -51,25 +51,29 @@ module.exports = {
         res.render(CONTROLLER_NAME + '/login');
     },
     getProfile: function(req, res, next) {
+        var user = req.user,
+            userGradesPerTest = {},
+            userAverageGrades = {};
+
+        for (var item in user.tests) {
+            var currentTest = user.tests[item];
+
+            userGradesPerTest[currentTest.testName] = userGradesPerTest[currentTest.testName] || {};
+            userGradesPerTest[currentTest.testName].gradesSum = userGradesPerTest[currentTest.testName].gradesSum + currentTest.grade || currentTest.grade;
+            userGradesPerTest[currentTest.testName].gradesCount = userGradesPerTest[currentTest.testName].gradesCount + 1 || 1;
+        }
+
+        for (var testName in userGradesPerTest) {
+            userAverageGrades[testName] = userGradesPerTest[testName].gradesSum / userGradesPerTest[testName].gradesCount;
+        }
+
         res.render(CONTROLLER_NAME + '/profile', {
-            currentUser: req.user
+            currentUser: req.user,
+            averageGrades: userAverageGrades
         });
     },
-    // FIX THIS! user model is in req.user
     updateProfile: function(req, res, next) {
-        users.findOne(req.body.username, function(err, user) {
-            var sites = distinctSiteNames(user.sites.concat(req.body.sites));
-
-            if (err) {
-                return next(err);
-            }
-
-            users.update({
-                _id: user._id
-            }, sites, function() {
-                res.send('/');
-            });
-        });
+        // TODO: Implement
     },
     assignCourse: function(req, res, next) {
         var user = req.user,

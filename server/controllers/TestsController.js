@@ -8,24 +8,22 @@ function checkUserAnswers(testQuestions, userAnswers) {
         correctAnswersCount = 0;
 
     for (var item in testQuestions) {
-        if (testQuestions.hasOwnProperty(item)) {
-            var currentQuestion = testQuestions[item];
-            var userAnswer = userAnswers[currentQuestion.question.replace(/\s/g, '-')] | 0;
-            var correctAnswer = currentQuestion.correctAnswer;
+        var currentQuestion = testQuestions[item];
+        var userAnswer = userAnswers[currentQuestion.question.replace(/\s/g, '-')] | 0;
+        var correctAnswer = currentQuestion.correctAnswer;
 
-            if (userAnswer === correctAnswer) {
-                userScore[currentQuestion.question] = {
-                    isCorrect: true,
-                    userAnswer: currentQuestion.answers[userAnswer]
-                };
-                correctAnswersCount++;
-            } else {
-                userScore[currentQuestion.question] = {
-                    isCorrect: false,
-                    userAnswer: currentQuestion.answers[userAnswer],
-                    correctAnswer: currentQuestion.answers[correctAnswer]
-                };
-            }
+        if (userAnswer === correctAnswer) {
+            userScore[currentQuestion.question] = {
+                isCorrect: true,
+                userAnswer: currentQuestion.answers[userAnswer]
+            };
+            correctAnswersCount++;
+        } else {
+            userScore[currentQuestion.question] = {
+                isCorrect: false,
+                userAnswer: currentQuestion.answers[userAnswer],
+                correctAnswer: currentQuestion.answers[correctAnswer]
+            };
         }
     }
 
