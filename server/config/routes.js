@@ -20,13 +20,7 @@ module.exports = function(app) {
     app.put('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.users.assignTest);
     app.post('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.tests.submitTest);
 
-    app.get('/', function(req, res) {
-        res.render('index', {
-            currentUser: req.user
-        });
-    });
-
-    app.all('*', function(req, res) {
+    app.get('*', function(req, res) {
         res.render('index', {
             currentUser: req.user
         });

@@ -49,7 +49,7 @@ function evaluateTest(totalQuestionsCount, correctAnswersCount) {
 module.exports = {
     getTestById: function(req, res, next) {
         var testName = req.params.testId;
-        testName = testName.replace('-', ' ');
+        testName = testName.replace(/-/g, ' ');
 
         testModel.getByName(testName, function(err, data) {
             if (err) {

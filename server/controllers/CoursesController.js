@@ -20,8 +20,7 @@ module.exports = {
             currentUser = req.user,
             isCourseAssigned = false;
 
-        courseName = courseName.replace('-', ' ');
-
+        courseName = courseName.replace(/-/g, ' ');
         courseModel.getById(courseName, function(err, data) {
             if (err) {
                 return next(err);
