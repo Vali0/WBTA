@@ -4,11 +4,6 @@ block main-content
         form(id='profile-form')
             label Username:
             label(id="username") #{currentUser.username}
-            br
-            input(type="button" class="btn btn-lg" value="+" id="add-site")
-            div(class="site form-group has-error")
-                label(class="control-label") Site:
-                input(type="text" name="site_0" required="required" class="site-name form-control" autocomplete="off")
             label Confirm password:
             input(type="password" id="password" class="form-control")
             input(type="button" id="update-profile" class="btn btn-lg" value="Update")
