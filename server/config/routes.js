@@ -20,14 +20,6 @@ module.exports = function(app) {
     app.put('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.users.assignTest);
     app.post('/course/:courseId/test/:testId', auth.isAuthenticated, controllers.tests.submitTest);
 
-    // app.get('/page-speed', controllers.pageSpeed.getPageSpeedForm);
-    // app.post('/page-speed', controllers.pageSpeed.runPageSpeed);
-
-    // app.get('/page-speed/my-sites', controllers.users.getMySites);
-    // app.post('/page-speed/my-sites', controllers.pageSpeed.runPageSpeed);
-
-    // app.get('/benchmark-results', controllers.pageSpeed.getBenchmarkResults);
-
     app.get('/', function(req, res) {
         res.render('index', {
             currentUser: req.user

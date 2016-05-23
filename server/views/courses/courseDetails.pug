@@ -13,21 +13,24 @@ block main-content
             span.pull-right Today!
 
     if isCourseAssigned
-        h1 Available Tests
-        table.table.table-bordered.table-striped.table-hover#results-table
-            thead
-                tr
-                    th Test Name
-                    th
-            tbody
-                each test in course.assignedTests
+        if test.length
+            h1 Available Tests
+            table.table.table-bordered.table-striped.table-hover#results-table
+                thead
                     tr
-                        td
-                            h4 #{test}
-                        td
-                            a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') id="participate-test" class="btn btn-success" data-test-name=test) Participate
+                        th Test Name
+                        th
+                tbody
+                    each test in course.assignedTests
+                        tr
+                            td
+                                h4 #{test}
+                            td
+                                a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') id="participate-test" class="btn btn-success" data-test-name=test) Participate
+        else
+            h3.alert.alert-danger Not available tests.
     else
-        h3 If you want to participate following tests please assign to this course
+        h3.alert.alert-danger If you want to participate following tests please assign to this course
         table.table.table-bordered.table-striped.table-hover#results-table
             thead
                 tr

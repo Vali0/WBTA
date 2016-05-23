@@ -2,7 +2,7 @@ extends ../shared/layout
 block main-content
     .panel.panel-default
         .panel-body
-            if(courses.length)
+            if courses.length
                 table.table.table-bordered.table-striped.table-hover#results-table
                     thead
                         tr
@@ -19,5 +19,5 @@ block main-content
                                 td #{course.assignedTests.length}
                                 td #{course.students.length}
             else
-                h1 There are not available courses.
+                h1.alert.alert-danger Not available courses.
 block page-scripts

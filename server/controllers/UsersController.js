@@ -3,8 +3,7 @@ var CONTROLLER_NAME = 'users';
 var encryption = require('../utilities/encryption');
 
 var users = require('../data/users'),
-    courseModel = require('../data/course'),
-    testModel = require('../data/test');
+    courseModel = require('../data/course');
 
 function distinctSiteNames(array) {
     var a = array.concat();
