@@ -28,9 +28,9 @@ block main-content
                             td
                                 a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') id="participate-test" class="btn btn-success" data-test-name=test) Participate
         else
-            h3.alert.alert-danger Not available tests.
+            h4.alert.alert-danger Not available tests.
     else
-        h3.alert.alert-danger If you want to participate following tests please assign to this course
+        h4.alert.alert-danger If you want to participate following tests please assign to this course
         table.table.table-bordered.table-striped.table-hover#results-table
             thead
                 tr

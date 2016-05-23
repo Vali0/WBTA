@@ -1,37 +1,41 @@
 extends ../shared/layout
 block main-content
-    div.panel.panel-default
-        div.panel-heading
-            h1 Hello #{currentUser.username}
-        div.panel-body
-            table.table.table-striped.table-hover.table-bordered
-                thead
-                    tr
-                        th #
-                        th Test Name
-                        th Grade
-                        th Date
-                tbody
-                    each test, index in currentUser.tests
+    if currentUser.tests.length
+        div.panel.panel-default
+            div.panel-heading
+                h1 Hello #{currentUser.username}
+            div.panel-body
+                table.table.table-striped.table-hover.table-bordered
+                    thead
                         tr
-                            td #{index + 1}
-                            td #{test.testName}
-                            td #{test.grade}
-                            td #{test.date}
-    div.panel.panel-default
-        div.panel-heading
-            h1 Average grade per test
-        div.panel-body
-            table.table.table-striped.table-hover.table-bordered
-                thead
-                    tr
-                        th Test Name
-                        th Average Grade
-                tbody
-                    each grade, testName in averageGrades
+                            th #
+                            th Test Name
+                            th Grade
+                            th Date
+                    tbody
+                        each test, index in currentUser.tests
+                            tr
+                                td #{index + 1}
+                                td #{test.testName}
+                                td #{test.grade}
+                                td #{test.date}
+        div.panel.panel-default
+            div.panel-heading
+                h1 Average grade per test
+            div.panel-body
+                table.table.table-striped.table-hover.table-bordered
+                    thead
                         tr
-                            td #{testName}
-                            td #{grade}
+                            th Test Name
+                            th Average Grade
+                    tbody
+                        each grade, testName in averageGrades
+                            tr
+                                td #{testName}
+                                td #{grade}
+    else
+        div.alert.alert-info
+            p.lead You haven't participated in any tests
 block page-scripts
     script(src="/js/addMoreSites.js")
     script(src="/js/updateUserInfoController.js")
