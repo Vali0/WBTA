@@ -28,18 +28,21 @@ block main-content
                             td
                                 a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') id="participate-test" class="btn btn-success" data-test-name=test) Participate
         else
-            h4.alert.alert-danger Not available tests.
+            h4.alert.alert-danger This course does not have any tests yet
     else
-        h4.alert.alert-danger If you want to participate following tests please assign to this course
-        table.table.table-bordered.table-striped.table-hover#results-table
-            thead
-                tr
-                    th Test Name
-            tbody
-                each test in course.assignedTests
+        if course.assignedTests.length
+            h4.alert.alert-danger If you want to participate following tests please assign to this course
+            table.table.table-bordered.table-striped.table-hover#results-table
+                thead
                     tr
-                        td
-                            h4 #{test}
+                        th Test Name
+                tbody
+                    each test in course.assignedTests
+                        tr
+                            td
+                                h4 #{test}
+        else
+            h4.alert.alert-danger This course does not have any tests yet
         a(href=course.name.replace(/\s/g, '-') id="assign-course" class="btn btn-primary btn-lg" data-course-name=course.name) Assign Course
 
 block page-scripts
