@@ -25,7 +25,7 @@ block main-content
                             td
                                 h4 #{test}
                             td
-                                a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') id="participate-test" class="btn btn-success" data-test-name=test) Participate
+                                a(href=course.name.replace(/\s/g, '-') + '/test/' + test.replace(/\s/g, '-') class="participate-test" class="btn btn-success" data-test-name=test) Participate
         else
             h4.alert.alert-danger This course does not have any tests yet
     else
