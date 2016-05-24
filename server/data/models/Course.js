@@ -11,6 +11,10 @@ module.exports.init = function() {
             type: String,
             required: true
         },
+        summary: {
+            type: String,
+            required: true
+        },
         assignedTests: [{
             type: String,
             unique: true

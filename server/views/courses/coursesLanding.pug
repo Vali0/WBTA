@@ -7,7 +7,7 @@ block main-content
                     thead
                         tr
                             th Name
-                            th Lecture Summary
+                            th Course Summary
                             th Tests Count
                             th Students Count
                     tbody
@@ -15,7 +15,7 @@ block main-content
                             tr
                                 td
                                     a(href="course/" + course.name.replace(/\s/g, '-')) #{course.name}
-                                td #{course.lecture.substr(0, 100)}
+                                td #{course.summary}
                                 td #{course.assignedTests.length}
                                 td #{course.students.length}
             else
