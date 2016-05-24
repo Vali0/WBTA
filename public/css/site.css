@@ -3,9 +3,9 @@
 }
 
 .course-images img {
-    width: 500px;
+    width: 50%;
 }
 
 .course-images.tiles img {
-    width: 150px;
+    width: 15%;
 }

@@ -67,24 +67,24 @@ module.exports = {
         var user = req.user,
             userAnswers = req.body;
 
-        testModel.getByName(userAnswers.testName, function(err, data) {
+        testModel.getByName(userAnswers.testName, function(err, testData) {
             if (err) {
                 return next(err);
             }
 
-            var testQuestions = data.questions,
+            var testQuestions = testData.questions,
                 checkedAnswers = checkUserAnswers(testQuestions, userAnswers),
                 userScore = checkedAnswers[0],
                 correctAnswersCount = checkedAnswers[1],
                 totalQuestionsCount = testQuestions.length,
                 userGrade = evaluateTest(totalQuestionsCount, correctAnswersCount);
 
-            userModel.findOne(user.username, function(err, data) {
+            userModel.findOne(user.username, function(err, userData) {
                 if (err) {
                     return next(err);
                 }
 
-                var lastTest = data.tests[data.tests.length - 1];
+                var lastTest = userData.tests[userData.tests.length - 1];
 
                 userModel.update({
                         'tests._id': lastTest._id
@@ -101,7 +101,8 @@ module.exports = {
                         res.render(CONTROLLER_NAME + '/testResult', {
                             userGrade: userGrade,
                             userScore: userScore,
-                            correctAnswersCount: correctAnswersCount
+                            correctAnswersCount: correctAnswersCount,
+                            courseName: testData.course
                         });
                     });
             });

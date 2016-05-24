@@ -17,3 +17,8 @@ block main-content
                     | &nbsp;is not correct. The correct answer is&nbsp;
                     span.span.label.label-success #{answer.correctAnswer}
     h4.alert.alert-info Correct Answers: #{correctAnswersCount}
+    div.well You can read the lecture for this test by clicking&nbsp;
+        a(href='/course/' + courseName) here
+        |  or you can check your grades by clicking on your&nbsp;
+        a(href='/profile') profile
+
