@@ -1,0 +1,11 @@
+.course-images {
+    text-align: center;
+}
+
+.course-images img {
+    width: 500px;
+}
+
+.course-images.tiles img {
+    width: 150px;
+}
