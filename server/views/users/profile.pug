@@ -19,6 +19,12 @@ block main-content
                                 td #{test.testName}
                                 td #{test.grade}
                                 td #{test.date}
+                    tfoot
+                        tr
+                            td
+                                strong Overall Grade
+                            td(colspan="3")
+                                strong #{overallGrade}
         div.panel.panel-default
             div.panel-heading
                 h1 Average grade per test

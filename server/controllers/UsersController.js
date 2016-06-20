@@ -53,23 +53,29 @@ module.exports = {
     getProfile: function(req, res, next) {
         var user = req.user,
             userGradesPerTest = {},
-            userAverageGrades = {};
+            userAverageGrades = {},
+            overallGradesSum = 0,
+            userOverallGrade;
 
         for (var item in user.tests) {
             var currentTest = user.tests[item];
 
+            overallGradesSum += currentTest.grade;
             userGradesPerTest[currentTest.testName] = userGradesPerTest[currentTest.testName] || {};
-            userGradesPerTest[currentTest.testName].gradesSum = userGradesPerTest[currentTest.testName].gradesSum + currentTest.grade || currentTest.grade;
-            userGradesPerTest[currentTest.testName].gradesCount = userGradesPerTest[currentTest.testName].gradesCount + 1 || 1;
+            userGradesPerTest[currentTest.testName].gradesSum = (userGradesPerTest[currentTest.testName].gradesSum + currentTest.grade) || currentTest.grade;
+            userGradesPerTest[currentTest.testName].gradesCount = (userGradesPerTest[currentTest.testName].gradesCount + 1) || 1;
         }
 
         for (var testName in userGradesPerTest) {
             userAverageGrades[testName] = userGradesPerTest[testName].gradesSum / userGradesPerTest[testName].gradesCount;
         }
 
+        userOverallGrade = (overallGradesSum / user.tests.length).toPrecision(3);
+
         res.render(CONTROLLER_NAME + '/profile', {
             currentUser: req.user,
-            averageGrades: userAverageGrades
+            averageGrades: userAverageGrades,
+            overallGrade: userOverallGrade
         });
     },
     updateProfile: function(req, res, next) {
